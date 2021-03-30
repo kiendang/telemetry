@@ -111,7 +111,10 @@ class EventLog(Configurable):
         """
         # Just use YAML loader for everything, since all valid JSON is valid YAML
         with open(filename) as f:
-            self.register_schema(yaml.load(f))
+            self.register_schema_file_object(f)
+
+    def register_schema_file_object(self, f):
+        self.register_schema(yaml.load(f))
 
     def register_schema(self, schema):
         """
